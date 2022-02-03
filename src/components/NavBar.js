@@ -1,5 +1,7 @@
 // Nombre de la tienda y categorias clickeables sin funcionalidad, incluir bootstrap
+import { MenuItem } from '@mui/material';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CartWidget from './CartWidget';
 const NavBar = () => {
     return (
         <div>
@@ -23,10 +25,15 @@ const NavBar = () => {
                             <li className="nav-item">
                                 <a className="nav-link">Electro-acústicas</a>
                             </li>
+                            <li className="nav-item" >
+                            <a className="nav-link" ><CartWidget/></a>
+                            </li>
                         </ul>
+                        
                         <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                             <button className="btn btn-outline-success" type="submit">Search</button>
+
                         </form>
                     </div>
                 </div>

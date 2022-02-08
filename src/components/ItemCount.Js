@@ -1,17 +1,24 @@
+
 import { useState } from 'react';
 
-function Example() {
+function ItemCount() {
   // Declaración de una variable de estado que llamaremos "count"
   const [count, setCount] = useState(0);
+  
+    return (
+      <>
+        <p>You clicked {count} times</p>
+        <button disabled ={count >4} onClick={() => setCount(count + 1)}>
+         +
+        </button>
+      
+        <button disabled={count < 1 } onClick={() => setCount(count - 1)}>
+          -
+        </button>
+        
+      </>
+    );
+  }
+  
 
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
-    </div>
-  );
-}
-
-export default Example;
+export default ItemCount;

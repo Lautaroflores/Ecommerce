@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 function ItemCount() {
-  // Declaración de una variable de estado que llamaremos "count"
+
   const [count, setCount] = useState(0);
   
     return (
@@ -18,7 +18,7 @@ function ItemCount() {
         
       </>
     );
-  }
+}
   
 
 export default ItemCount;

@@ -1,28 +1,32 @@
-import React from "react";
-import {Card} from 'react-bootstrap';
-const Item =({jsonpack})=>{
-  return(
-    <>
-        <Card  border="light"  bg="dark" style={{ width: '25rem' }} className="mb-2">
-            <Card.Header>
-
-                <Card.Img variant="top" src={jsonpack.pictureurl} />
-            </Card.Header>
-            <Card.Body>
-                <Card.Title>{jsonpack.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Precio:{jsonpack.price}</Card.Subtitle>
-                <Card.Text>
-                    <p>{jsonpack.description}</p>
-                </Card.Text>
-            </Card.Body>
-        </Card>
-    </>
-
-
-    );
-
-};
+// import ItemCount from './ItemCount';
+// import {Card} from 'react-bootstrap';
 
 
 
-export default Item;
+// const Item =({item})=> {
+   
+//         return(
+//         <>
+//             {
+              
+//                 <Card  border="light"  bg="dark" style={{ width: '25rem' }} className="mb-2">
+//                     <Card.Header>
+//                         <Card.Img variant="left" src={item.pictureurl} />
+//                     </Card.Header>
+//                     <Card.Body>
+//                         <Card.Title>{item.title}</Card.Title>
+//                         <Card.Subtitle className="mb-2 text-muted">Precio:${item.price}</Card.Subtitle>
+//                         <Card.Text>
+//                             <p>{item.description}</p>
+//                         </Card.Text>
+//                         <ItemCount/>
+//                     </Card.Body>
+//                 </Card>
+              
+//             }
+//         </>
+//      );
+//  }
+
+
+// export default Item;

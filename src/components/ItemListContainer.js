@@ -1,5 +1,5 @@
 import ItemList from './ItemList';
-import jsonpack from '../data.json';
+import data from '../data.js';
 import React, {useState} from 'react';
 
 
@@ -7,14 +7,14 @@ const ItemListContainer = ({name}) => {
   const[item,setItems]=useState([])
   const call = new Promise((resolve)=>{
     setTimeout(()=>{
-      resolve(jsonpack)
+      resolve(data)
     },2000)
   })
 
-  call.then(response=> {
+  .then(response=> {
     setItems(response)
   })
-  
+
   return (
 
     <div name="test">

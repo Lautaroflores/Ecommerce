@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import {customFetch} from './customFetch'
 import ItemDetail from './ItemDetail';
+import data from '../data'
 
 const {products} = require ('../data.js');
 
 const ItemDetailContainer =() => {
+  
     const [data, setData] = useState({});
 
     useEffect(()=> {
@@ -13,11 +15,11 @@ const ItemDetailContainer =() => {
         .then(result => setData(result))
         .catch(err=> console.log(err))
     },[])
-
+     
     return (
-        <ItemDetail item={products}/>
+        data ?  <ItemDetail item={products}/>:console.log("error")
     )
-}
-
+   
+    }
 
 export default ItemDetailContainer;

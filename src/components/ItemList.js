@@ -7,13 +7,17 @@
  const ItemList = ({items}) =>{
      console.log(items);
      return (
-         <>
-             <Card/>
-                 {items.map(item=>
-           
-                 <Item key={item} jsonpack={item} />
 
+         <>
+            
+             <Card>
+                 {items.map((item, index)=>
+           
+                 <Item key={index} item={item} />
+                
              )}
+             </Card>
+             
          </>
      )
  }

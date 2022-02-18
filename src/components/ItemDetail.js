@@ -1,18 +1,18 @@
  import React from "react";
 
  import Card from "react-bootstrap/Card";
-
+import data from '../data';
 import ItemCount from "./ItemCount";
 
- const ItemDetail =({item})=> {
-  
- 
-     return (
+
+const ItemDetail =({item})=> {
+
+     return data? (
     
      <div className="d-flex justify-content-center mt-3">
        <Card border="success" style={{ width: "75%" }}>
          <Card.Body>
-           <img src={item.pictureurl} alt={item.title} />
+          <img src={item.pictureurl} alt={item.title} />
          </Card.Body>
        </Card>
        <Card border="success" style={{ width: "18rem" }}>
@@ -28,8 +28,9 @@ import ItemCount from "./ItemCount";
          <ItemCount/> 
        </Card>
      </div>
-   );
-
+    
+   ):(console.log("error"));
+      
   };
 
  export default ItemDetail;

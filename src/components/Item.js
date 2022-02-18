@@ -1,32 +1,32 @@
-// import ItemCount from './ItemCount';
-// import {Card} from 'react-bootstrap';
+ import ItemCount from './ItemCount';
+ import {Card} from 'react-bootstrap';
+import {Link} from 'react-router-dom'; 
 
 
-
-// const Item =({item})=> {
+ const Item =({item})=> {
    
-//         return(
-//         <>
-//             {
+         return(
+         <div className='detail'>
+             {
               
-//                 <Card  border="light"  bg="dark" style={{ width: '25rem' }} className="mb-2">
-//                     <Card.Header>
-//                         <Card.Img variant="left" src={item.pictureurl} />
-//                     </Card.Header>
-//                     <Card.Body>
-//                         <Card.Title>{item.title}</Card.Title>
-//                         <Card.Subtitle className="mb-2 text-muted">Precio:${item.price}</Card.Subtitle>
-//                         <Card.Text>
-//                             <p>{item.description}</p>
-//                         </Card.Text>
-//                         <ItemCount/>
-//                     </Card.Body>
-//                 </Card>
+                 <Card  border="light"  bg="dark" style={{ width: '25rem' }} className="mb-2">
+                     <Card.Header>
+                     <Link to='/item/:index'>  <Card.Img variant="left" src={item.pictureurl} /></Link>
+                     </Card.Header>
+                     <Card.Body>
+                         <Card.Title>{item.title}</Card.Title>
+                         <Card.Subtitle className="mb-2 text-muted">Precio:${item.price}</Card.Subtitle>
+                         <Card.Text>
+                             <p>{item.description}</p>
+                         </Card.Text>
+                         <ItemCount/>
+                     </Card.Body>
+                 </Card>
               
-//             }
-//         </>
-//      );
-//  }
+             }
+         </div>
+      );
+  }
 
 
-// export default Item;
+ export default Item;

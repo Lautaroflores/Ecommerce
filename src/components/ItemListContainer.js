@@ -1,35 +1,39 @@
 import ItemList from './ItemList';
+import React, {useEffect, useState} from 'react';
+import {customFetch} from './customFetch';
+import {useParams} from 'react-router-dom';
 import data from '../data.js';
-import React, {useState} from 'react';
 
 
-const ItemListContainer = ({name}) => {
-  const[item,setItems]=useState([])
-  const call = new Promise((resolve)=>{
-    setTimeout(()=>{
-      resolve(data)
-    },2000)
-  })
+const ItemListContainer = () => {
+  const[datos, setDatos]=useState([]);
+  const {idCategory} = useParams();
+  
+  console.log(idCategory);
 
-  .then(response=> {
-    setItems(response)
-  })
+  useEffect(()=> {
+    if (idCategory === undefined) {customFetch(2000, data)
+      .then(result => setDatos(result))
+      .catch(err=> console.log(err))
+    }
+    
+   else {customFetch(2000, data.filter(item => item.categoryId === parseInt(idCategory)))
+    .then(result => setDatos(result))
+    .catch(err=> console.log(err))
+  }
+   
+},[idCategory]);
+
 
   return (
 
-    <div name="test">
+    <div className="p-3 mb-2 bg-dark text-white">
+      
 
-
-
-    <div class="p-3 mb-2 bg-dark text-white">
-      {name}
-
-      <ItemList items={item}/>
+      <ItemList items={datos}/>
 
     </div>
 
-
-    </div>
   )
 }
 

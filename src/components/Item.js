@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom';
               
                  <Card  border="light"  bg="dark" style={{ width: '25rem' }} className="mb-2">
                      <Card.Header>
-                     <Link to='/item/:index'>  <Card.Img variant="left" src={item.pictureurl} /></Link>
+                     <Link to={`/item/${item.index}`}>  <Card.Img variant="left" src={item.pictureurl} /></Link>
                      </Card.Header>
                      <Card.Body>
                          <Card.Title>{item.title}</Card.Title>
@@ -19,7 +19,7 @@ import {Link} from 'react-router-dom';
                          <Card.Text>
                              <p>{item.description}</p>
                          </Card.Text>
-                         <ItemCount/>
+                         
                      </Card.Body>
                  </Card>
               

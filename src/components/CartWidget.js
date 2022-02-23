@@ -1,11 +1,11 @@
 import Badge from '@material-ui/core/Badge';
 
-import { ShoppingCartOutlined } from "@material-ui/icons";
+import {AiOutlineShoppingCart} from "react-icons/ai";
 
 const CartWidget = () => {
     return (
         <Badge badgeContent={2} color="secondary">
-            <ShoppingCartOutlined/>
+            <AiOutlineShoppingCart/>
         </Badge>
     )
 }

@@ -2,7 +2,7 @@ import ItemList from './ItemList';
 import React, {useEffect, useState} from 'react';
 import {customFetch} from './customFetch';
 import {useParams} from 'react-router-dom';
-import data from '../data.js';
+import data from '../data.json';
 
 
 const ItemListContainer = () => {

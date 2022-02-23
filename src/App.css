@@ -79,3 +79,11 @@
     width: 50px;
   }
 }
+
+div.card-body{
+  
+  width: 100%;
+}
+div.card {
+  color: white;
+}

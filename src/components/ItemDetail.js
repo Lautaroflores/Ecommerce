@@ -1,21 +1,45 @@
- import React from "react";
-
+ import React, {useState} from "react";
+ import {Link} from 'react-router-dom';
  import Card from "react-bootstrap/Card";
-import data from '../data';
+import data from '../data.json';
 import ItemCount from "./ItemCount";
 
 
 const ItemDetail =({item})=> {
+  const stocks = 10
+  const initial = 0
+  const [stock, setSotck] = useState(stocks)
+  const [count, setCount] = useState(initial)
+  const [add, setAdd] = useState(false)
 
-     return data? (
+  const increase = () => { 
+      if(count < stocks){
+          setCount(count + 1)
+          setSotck(stock - 1)
+      }
+  }
+
+  const decrease = () => { 
+      if(count > initial){
+          setCount(count - 1)
+          setSotck(stock + 1)
+      }
+  }
+
+  const onAdd = () =>{
+      if (count <= stocks){
+          setAdd(true)
+      }
+  };
+     return (
     
-     <div className="d-flex justify-content-center mt-3">
-       <Card border="success" style={{ width: "75%" }}>
+     <div className="d-flex justify-content-center mt-3"style={{ backgroundColor: "#212529"}}>
+       <Card border="success" style={{ width: "35%" }}>
          <Card.Body>
           <img src={item.pictureurl} alt={item.title} />
          </Card.Body>
        </Card>
-       <Card border="success" style={{ width: "18rem" }}>
+       <Card border="success" style={{ width: "35%" }} >
          <Card.Body>
            <Card.Title>{item.title}</Card.Title>
            <Card.Text>
@@ -25,11 +49,22 @@ const ItemDetail =({item})=> {
              <br />            
            </Card.Text>
          </Card.Body>
-         <ItemCount/> 
+         <>
+         {add ? <Link to= {'/cart'}><button className="btn-finalizar">Comprar Ahora</button></Link> :
+                    <ItemCount stock={stocks}
+                    initial={initial}
+                    count={count}
+                    increase={increase}
+                    decrease={decrease}
+                    onAdd={onAdd}
+                    />
+                }
+
+          </>
        </Card>
      </div>
     
-   ):(console.log("error"));
+   )
       
   };
 

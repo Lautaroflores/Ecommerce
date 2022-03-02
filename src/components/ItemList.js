@@ -1,25 +1,25 @@
- import React from 'react';
+import React from 'react';
 
- import {Card} from 'react-bootstrap';
- import Item from './Item'
+import {Card} from 'react-bootstrap';
+import Item from './Item'
 
 
- const ItemList = ({items}) =>{
-     console.log(items);
-     return (
+const ItemList = ({items}) =>{
+    console.log(items);
+    return (
 
-         <>
+        <>
             
-             <Card>
-                 {items.map((item, index)=>
-           
-                 <Item key={index} item={item} />
+            <Card>
+                {items.map((item, index)=>
+          
+                    <Item key={index} item={item} />
                 
-             )}
-             </Card>
+                )}
+            </Card>
              
-         </>
-     )
- }
+        </>
+    )
+}
 
- export default ItemList;
+export default ItemList;

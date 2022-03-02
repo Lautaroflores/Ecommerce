@@ -1,20 +1,39 @@
-import React from "react"
+import React, {useState} from "react"
 
 
-const ItemCount = ({stock, initial, count, increase, decrease, onAdd}) =>{
+const ItemCount = ({stocks,  initial, onAdd}) =>{
+    const [count, setCount] = useState(initial)
+    const [stock, setStock] = useState(stocks)
 
+    const increase = () => { 
+        if(count < stocks){
+            setCount(count + 1)
+            setStock(stock - 1)
+            console.log(count)
+        }
 
+    }
+
+    const decrease = () => { 
+        if(count > initial){
+            setCount(count - 1)
+            setStock(stock + 1)
+        }
+
+    }
+
+    onAdd(count)
 
     return(
         <div className="card-count">
             <h5>Cantidad:</h5>
-            <div className="_grid">
-              <button className="_btn _column product-subtract" onClick={decrease} disabled={count === initial} >-</button>
-              <div className="_column product-qty">{count}</div>
-              <button className="_btn _column product-plus" onClick={increase} disabled={count === stock} >+</button>
+            <div className="grid">
+              <button className="column product-subtract" onClick={decrease} disabled={count === initial} >-</button>
+              <div className="column product-qty">{count}</div>
+              <button className="column product-plus" onClick={increase} disabled={count === stock} >+</button>
             </div>
-            <button className="_btn product-add" onClick={onAdd}>Agregar al Carrito</button>
+            <p>Unidades Disponibles: {stock-initial}</p>
         </div>
     )
 }
-export default ItemCount
+export default ItemCount;

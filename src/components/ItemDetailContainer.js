@@ -1,36 +1,38 @@
-
-import React, { useEffect, useState } from 'react';
-import {customFetch} from './customFetch'
-import ItemDetail from './ItemDetail';
+import React, {useState, useEffect} from 'react';
+import {useParams} from "react-router-dom";
 import data from '../data.json';
-import {useParams} from 'react-router-dom';
+import ItemDetail from './ItemDetail' ;
 
-const ItemDetailContainer =() => {
-    const {id} = useParams();
-    const [dato, setDato] = useState({});
+const getItem = (itemId) => {
+    return new Promise(result =>  setTimeout(() => 
+        { result(data.find(item =>
+            item.id===parseInt(itemId)))  
+        },500)) 
+} 
 
-    useEffect(()=> {
+const ItemDetailContainer = () => {
+    const [loading, setLoading] = useState(false);
+    const [item, setItem] = useState([]);
 
-        customFetch(2000, data)
-        .then(result => {console.log(result);
-            const item = result.find(elem=>elem.index === id)
-            setDato(item)})
-        .catch(e=> console.log(e))
+    const {itemId} = useParams();
+
+    useEffect(() =>{
+        setLoading(true);
+        getItem(itemId).then((item) => {
+            setItem(item);
+            setLoading(false)    
+        });
+
+    }, [itemId])
 
 
-    },[id])
+    return(
+        <>
 
-    useEffect(()=> {
-        console.log(dato);
+        {loading ? "Cargando Información..." : <ItemDetail item={item} />}
 
-    }, [dato])
-    
-    return (
-      
-      <ItemDetail item={dato}/>
-      
-    )
-   
-    
+        </>
+
+)   
 }
 export default ItemDetailContainer;

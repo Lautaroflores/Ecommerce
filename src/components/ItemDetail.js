@@ -1,81 +1,45 @@
-import React, {useState} from "react";
-import {Link} from 'react-router-dom';
-import Card from "react-bootstrap/Card";
-import useCartContext from "./CartContext";
-import ItemCount from "./ItemCount";
+import React, {useState} from 'react'
+import ItemCount from "./ItemCount"
+import {Link} from 'react-router-dom'
+import useCartContext from './CartContext'
 
+const ItemDetail = ({item}) => {
+    const stocks = 10
+    const initial = 1
+    const [add, setAdd] = useState(false)
+    const [quantity, setQuantity] = useState(1)
+    const { addItem } = useCartContext()
 
-const ItemDetail =({item})=> {
-  const stocks = 10
-  const initial = 1
-  const [stock, setSotck] = useState(stocks)
-  const [count, setCount] = useState(initial)
-  const [add, setAdd] = useState(false)
-  const [quantity, setQuantity] = useState(0)
-  const { addItem } = useCartContext()
-
-  const increase = () => { 
-    if(count < stocks){
-      setCount(count + 1)
-      setSotck(stock - 1)
+    const itemQuantity = (count) => {
+        setQuantity(count)
     }
-  }
 
-  const decrease = () => { 
-    if(count > initial){
-      setCount(count - 1)
-      setSotck(stock + 1)
+    const addToCart = () => {
+        addItem(item, quantity)
+        setAdd(true)
     }
-  }
 
-  const onAdd = () =>{
-    if (count <= stocks){
-      setAdd(true)
-      setQuantity(count)
-    }console.log(quantity)
-  };
-
-  const addToCart =() => {
-    addItem(item, quantity)
-    console.log(quantity)
-  }
 
     return (
-    
-    <div className="d-flex justify-content-center mt-3"style={{ backgroundColor: "#212529"}}>
-      <Card border="success" style={{ width: "35%" }}>
-        <Card.Body>
-          <img src={item.pictureurl} alt={item.title} />
-        </Card.Body>
-      </Card>
-      <Card border="success" style={{ width: "35%" }} >
-        <Card.Body>
-          <Card.Title>{item.title}</Card.Title>
-          <Card.Text>
-            {item.description}
-            <br />
-            <strong>Precio: ${item.price}.</strong>
-            <br />            
-          </Card.Text>
-        </Card.Body>
+        
+        <div className="card-product-detail">
+            <div className="img-detail">
+                <img src={item.pictureurl} alt={item.index} width="350" />
+            </div>
+            <div className="info-detail">
+                <h3>{item.title}</h3>
+                <p className="card-description">{item.description}</p>
+                <p className="card-price">{item.price}</p>
+                <ItemCount stocks={stocks}
+                    stock={stocks}
+                    initial={initial}
+                    onAdd={itemQuantity}
+                />
+                <button className="btn" onClick={addToCart}>Agregar al Carrito</button>
+                {add ? <Link to= {'/cart'}><button className="btn">Comprar Ahora</button></Link> : null}
+            </div>
+        </div>
 
-        <>
-          <ItemCount stock={stocks}
-            initial={initial}
-            count={count}
-            increase={increase}
-            decrease={decrease}
-            onAdd={onAdd}
-          />
-  
-          
-        </>
-      </Card>
-      {add ? <Link to= {'/cart'}><button className="btn-finalizar" onClick={addToCart}>Comprar Ahora</button></Link> : null}
-    </div>
-    
-  )
-      
-};
-
- export default ItemDetail;
+    )
+}
+export default ItemDetail

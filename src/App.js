@@ -9,7 +9,7 @@ import Cart from './components/Cart';
 
 function App() {
   return (
-    <CartContextProvider>    
+    // <CartContextProvider>    
       <BrowserRouter>
       <Navbar/> 
         <Routes>
@@ -19,7 +19,7 @@ function App() {
           <Route path='/cart' element={<Cart/>}/>  
         </Routes>
       </BrowserRouter>
-    </CartContextProvider>
+    // </CartContextProvider>
   )
 };
 

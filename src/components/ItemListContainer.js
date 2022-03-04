@@ -1,8 +1,8 @@
 import ItemList from './ItemList';
 import React, {useEffect, useState} from 'react';
-import {customFetch} from './customFetch';
+import { collection, getDocs } from "firebase/firestore";
 import {useParams} from 'react-router-dom';
-import data from '../data.json';
+import db from './firebaseConfig';
 
 
 const ItemListContainer = () => {
@@ -12,18 +12,25 @@ const ItemListContainer = () => {
   console.log(idCategory);
 
   useEffect(()=> {
-    if (idCategory === undefined) {customFetch(2000, data)
-      .then(result => setDatos(result))
-      .catch(err=> console.log(err))
+    const firestoreFetch = async()=>{
+      const querySnapshot = await getDocs(collection(db, "guitars"));
+      return querySnapshot.docs.map( document => ({
+        id: document.id,
+        ...document.data()
+      }))
+       
     }
-    
-   else {customFetch(2000, data.filter(item => item.categoryId === parseInt(idCategory)))
-    .then(result => setDatos(result))
-    .catch(err=> console.log(err))
-  }
-   
-},[idCategory]);
+    firestoreFetch()
+      .then(result=>setDatos(result))
+      .catch(error=> console.log(error));
+ 
+},[datos]);
 
+  useEffect(()=> {
+    return(()=>{
+      setDatos([])
+    })
+  }, []);
 
   return (
 

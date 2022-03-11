@@ -1,38 +1,24 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useParams} from "react-router-dom";
-import data from '../data.json';
 import ItemDetail from './ItemDetail' ;
+import  firestoreFetchOne  from './firestoreFetch';
 
-const getItem = (itemId) => {
-    return new Promise(result =>  setTimeout(() => 
-        { result(data.find(item =>
-            item.id===parseInt(itemId)))  
-        },500)) 
-} 
 
-const ItemDetailContainer = () => {
-    const [loading, setLoading] = useState(false);
-    const [item, setItem] = useState([]);
+const ItemDetailContainer =() => {
+    const [item, setItem] = useState({});
+    const {idItem} = useParams();
 
-    const {itemId} = useParams();
-
-    useEffect(() =>{
-        setLoading(true);
-        getItem(itemId).then((item) => {
-            setItem(item);
-            setLoading(false)    
-        });
-
-    }, [itemId])
-
+    useEffect(()=> {
+        firestoreFetchOne(idItem)
+        .then(result => setItem(result))
+        .catch(err => console.log(err))
+    }, [])
 
     return(
         <>
-
-        {loading ? "Cargando Información..." : <ItemDetail item={item} />}
-
+            <ItemDetail item={item} />
         </>
 
-)   
-}
+    );
+};
 export default ItemDetailContainer;

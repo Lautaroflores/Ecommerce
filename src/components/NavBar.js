@@ -14,21 +14,21 @@ const NavBar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
-                        <Link to='/category/3'> <li className="nav-item" className="nav-link">
+                        <Link to='/categoryId/3'> <li className="nav-link">
                             Criollas
                            </li>  </Link>
                             
-                           <Link to='/category/1'><li className="nav-item" className="nav-link">
+                           <Link to='/categoryId/1'><li className="nav-link">
                            Eléctricas
                                </li>  </Link>
                             
-                               <Link to='/category/2'><li className="nav-item" className="nav-link">
+                               <Link to='/categoryId/2'><li className="nav-link">
                           Electro-acústicas
                             </li> </Link>
                             
-                            <li className="nav-item" >
+                            <Link to ="/cart">   <li >
                             <a className="nav-link" ><CartWidget/></a>
-                            </li> 
+                            </li> </Link>
 
                         </ul>
                         

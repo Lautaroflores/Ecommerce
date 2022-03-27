@@ -10,7 +10,7 @@ const Item =({item})=> {
                 
                     <Card  border="light"  bg="dark" style={{ width: '25rem' }} className="mb-2">
                         <Card.Header>
-                            <Link to={`/item/${item.index}`}>  <Card.Img variant="left" src={item.pictureurl} /></Link>
+                            <Link to={`/item/${item.id}`}>  <Card.Img variant="left" src={item.pictureurl} /></Link>
                         </Card.Header>
                         <Card.Body>
                             <Card.Title>{item.title}</Card.Title>

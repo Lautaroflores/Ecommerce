@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useCartContext from './CartContext'
 import {Link} from 'react-router-dom';
-import firebase from "firebase/app";
+
 import "firebase/firestore";
 import { getFirestore } from 'firebase/firestore';
 import Formulario from './Formulario';
@@ -21,43 +21,17 @@ const Cart = () => {
         setShowForm(true)
     }
 
-    /* const createOrder = (buyer) =>{
-        const newOrder = {
-            buyer,
-            products,
-            date: firebase.firestore.Timestamp.fromDate(new Date()),
-            total: totalProductsPrice()
-        }
-        const db = getFirestore()
-        const orders = db.collection('order')
-        orders.add(newOrder).then(
-            ({id}) => {
-                setOrderId(id)
-                setConfirmation(true)
-            }
-        ).catch((e) => {console.log(e)})
-    } */
 
     async function createOrder(buyer){
 
-        /* let orderInfo =[]
-        products.map((itemInfo) => {
-            for (let i = 0; i < itemInfo.quantity; i++ ){
-                orderInfo.push({
-                    id: itemInfo.id,
-                    name: itemInfo.name,
-                    quantity: itemInfo.quantity,
-                    price: itemInfo.price
-                })
-            }
-        }) */
+   
         const newOrder = {
             buyer,
             products,
-            // date: firebase.firestore.Timestamp.fromDate(new Date()),
+          
             total: totalProductsPrice()
         }
-        console.log("order", newOrder)
+        
         const db = getFirestore()
         const orders = db.collection('order')
 
@@ -71,7 +45,7 @@ const Cart = () => {
         }
     }
 
-    console.log(confirmation)
+ 
     if(confirmation){
         alert('Su No. de Orden ' + orderId + ' ha sido confirmada')
         cleanListCart()
@@ -95,15 +69,15 @@ const Cart = () => {
                         </div>
                         <div className="product-details">{item.title}</div> 
                         <div className="product-quantity">
-                            <input type="text" placeholder={item.quantity}/>
+                           Quantity: {item.quantity}
                         </div>
-                        <div className="product-price">{item.price}</div>
+                        <div className="product-price">Price by unit: ${item.price}</div>
                         <div className="product-removal">
                             <button class="remove-product" onClick={()=>handleRemove(item)}>
                                 Remove
                             </button>
                         </div>
-                        <div className="product-line-price">{item.quantity*item.price}</div>
+                        <div className="product-line-price"> Total Product:${item.quantity*item.price}</div>
                     </div>
                     )
                 )}
@@ -113,22 +87,22 @@ const Cart = () => {
                 <div className="totals" >
                     <div class="totals-item">
                         <label>Subtotal</label>
-                        <div class="totals-value">{totalProductsPrice()}</div>
+                        <div class="totals-value">${totalProductsPrice()}</div>
                     </div>
                     <div class="totals-item">
                         <label>Costo de envío</label>
-                        <div class="totals-value">5000</div>
+                        <div class="totals-value">$5000</div>
                     </div>
-                    <div class="totals-item t-price">
+                    <div class="totals-item-t-price">
                         <label>Total a Pagar</label>
-                        <div class="totals-value t-price">{totalProductsPrice() + 5000}</div>
+                        <div class="totals-value t-price">${totalProductsPrice() + 5000}</div>
                     </div>
                     <div className="totals-item">
                         <button className ="checkout" onClick={handleFinalize}>Iniciar Compra</button>
                     </div>
                     {showForm ? <Formulario createOrder={createOrder}/> : null}
                 </div>
-                : "...No hay productos agregados al Carrito..."
+                : <div className='noItem'>...No hay productos agregados al Carrito...</div>
             }
 
         </section>

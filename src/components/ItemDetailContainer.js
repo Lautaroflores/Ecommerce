@@ -6,10 +6,10 @@ import  firestoreFetchOne  from './firestoreFetch';
 
 const ItemDetailContainer =() => {
     const [item, setItem] = useState({});
-    const {idItem} = useParams();
+    const {id} = useParams();
 
     useEffect(()=> {
-        firestoreFetchOne(idItem)
+        firestoreFetchOne(id)
         .then(result => setItem(result))
         .catch(err => console.log(err))
     }, [])

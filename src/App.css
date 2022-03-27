@@ -87,3 +87,21 @@ div.card-body{
 div.card {
   color: white;
 }
+
+.btn, .remove-product, .checkout, .continue {
+  background-color: grey;
+  color: white;
+}
+
+.card-product-detail, .cart {
+  background-color: #212529;
+}
+
+.info-detail, .card-price, .card-description, .product, .totals, h2, .noItem{
+  color: white;
+}
+
+.product-details, .totals-item-t-price{
+  font-size: larger;
+  font-weight: bolder;
+}
